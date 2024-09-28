@@ -10,19 +10,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function openLightbox(index) {
     lightbox.style.display = "block";
-    lightboxImg.src = images[index].src;
-    currentIndex = index;
+    showImage(index);
   }
 
   function closeLightboxFunc() {
     lightbox.style.display = "none";
   }
 
+  function showImage(index) {
+    lightboxImg.classList.add("fade-out");
+    setTimeout(() => {
+      lightboxImg.src = images[index].src;
+      currentIndex = index;
+      lightboxImg.classList.remove("fade-out");
+    }, 200); // This should match the transition duration in CSS
+  }
+
   function changeImage(step) {
-    currentIndex += step;
-    if (currentIndex < 0) currentIndex = images.length - 1;
-    if (currentIndex >= images.length) currentIndex = 0;
-    lightboxImg.src = images[currentIndex].src;
+    let newIndex = currentIndex + step;
+    if (newIndex < 0) newIndex = images.length - 1;
+    if (newIndex >= images.length) newIndex = 0;
+    showImage(newIndex);
   }
 
   gallery.addEventListener("click", function (e) {

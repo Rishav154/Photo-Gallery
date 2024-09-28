@@ -4,7 +4,30 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 20px;
-  background-color: aliceblue;
+  background-color: #f0f5ff;
+  background-image: radial-gradient(
+      circle at 25px 25px,
+      #ffffff 2%,
+      transparent 0%
+    ),
+    radial-gradient(circle at 75px 75px, #ffffff 2%, transparent 0%);
+  background-size: 100px 100px;
+  position: relative;
+}
+
+body::before {
+  content: "🐾";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.1;
+  font-size: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
 }
 
 h1 {
@@ -13,25 +36,35 @@ h1 {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  color: #4a4a4a;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   margin: 20px 30px 0 30px;
   padding: 20px;
-  background-color: lightgray;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .gallery img {
   width: 100%;
   height: 250px;
   object-fit: cover;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 5px;
 }
+
 .gallery img:hover {
   transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
+
 .lightbox {
   display: none;
   position: fixed;
@@ -42,6 +75,7 @@ h1 {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
 }
+
 .lightbox img {
   max-width: 90%;
   max-height: 90%;
@@ -51,7 +85,15 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   object-fit: contain;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+  border-radius: 5px;
 }
+
+.lightbox img.fade-out {
+  opacity: 0;
+}
+
 .close,
 .nav {
   color: #fff;
@@ -65,21 +107,31 @@ h1 {
   align-items: center;
   justify-content: center;
   border-radius: 25px;
+  transition: background-color 0.3s ease;
 }
+
+.close:hover,
+.nav:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
 .close {
   top: 20px;
   right: 30px;
 }
+
 .nav-prev {
   top: 50%;
   left: 20px;
   transform: translateY(-50%);
 }
+
 .nav-next {
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
 }
+
 @media (max-width: 768px) {
   .gallery {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
