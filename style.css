@@ -5,36 +5,14 @@ body {
   margin: 0;
   padding: 20px;
   background-color: #f0f5ff;
-  background-image: radial-gradient(
-      circle at 25px 25px,
-      #ffffff 2%,
-      transparent 0%
-    ),
-    radial-gradient(circle at 75px 75px, #ffffff 2%, transparent 0%);
   background-size: 100px 100px;
-  position: relative;
-}
-
-body::before {
-  content: "🐾";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0.1;
-  font-size: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: -1;
 }
 
 h1 {
   text-align: center;
   font-family: "Playwrite DE Grund", cursive;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
   color: #4a4a4a;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
